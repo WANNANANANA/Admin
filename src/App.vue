@@ -1,12 +1,73 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  created() {
+    // get
+    axios
+      .get("/erpTest", {
+        params: {
+          id: 1
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // post
+    axios
+      .post("erpTest", {
+        id: 2
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // put
+    axios
+      .put("erpTest", {
+        id: 3
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // delete
+    axios
+      .delete("erpTest", {
+        id: 4
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  data() {
+    return {};
+  }
+};
+</script>
 
 <style lang="less">
 #app {
