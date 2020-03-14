@@ -2,7 +2,6 @@
 
 // 导入所有接口
 import apis from './interface'
-console.log(apis);
 
 const install = Vue => {
     if (install.installed)

@@ -8,25 +8,27 @@ import axios from './axios'
  */
 
 // 单独导出
-export const login = () => {
+export const login = (data) => {
     return axios({
-        url: '/login',
-        method: 'get'
+        // 为什么这里直接使用/login也会报错？
+        url: 'http://localhost:8888/login',
+        // url: '/login',
+        method: 'post',
+        data // post请求中的参数
     })
 }
 
 export const getUser = () => {
     return axios({
-        url: '/user',
+        url: 'http://localhost:8888/user',
         method: 'get'
     })
 }
 
-export const getMenu = (data) => {
+export const getMenu = () => {
     return axios({
-        url: '/menu',
-        method: 'post',
-        data
+        url: 'http://localhost:8888/menu',
+        method: 'get'
     })
 }
 

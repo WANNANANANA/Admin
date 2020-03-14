@@ -6,7 +6,7 @@ import Error from '../views/Error'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+let router = new VueRouter({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
@@ -36,3 +36,23 @@ export default new VueRouter({
   ]
 })
 
+router.beforeEach((to, from, next) => {
+  let user = sessionStorage.getItem('user'); // 获取用户登录信息
+  if (to.path == '/login') {
+    // 如果访问的是登陆页面 用户信息存在的话说明已经登陆过了 跳转到主页
+    if (user) {
+      next({ path: '/' });
+    } else {
+      next();
+    }
+  } else {
+    // 如果访问的不是登陆页面 并且用户信息不存在 就跳转到登陆页面
+    if (!user) {
+      next({ path: '/login' });
+    } else {
+      next();
+    }
+  }
+})
+
+export default router;
