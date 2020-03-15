@@ -1,0 +1,15 @@
+{
+    "common": {
+        "home": "首页",
+        "login": "登录",
+        "exit": "退出",
+        "manage": "管理"
+    },
+    "sys": {
+        "userMng": "用户管理",
+        "newsMng": "消息管理",
+        "roleMng": "角色管理",
+        "menuMng": "菜单管理",
+        "logMng": "日志管理"
+    }
+}

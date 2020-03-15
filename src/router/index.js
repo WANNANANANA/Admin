@@ -4,6 +4,8 @@ import Home from '../views/Home'
 import News from '../views/News'
 import User from '../views/User'
 import Menu from '../views/Menu'
+import Role from '../views/Role'
+import Log from '../views/Log'
 import Login from '../views/Login'
 import Error from '../views/Error'
 
@@ -27,7 +29,9 @@ let router = new VueRouter({
       children: [
         { path: '/user', component: User, name: '用户管理' },
         { path: '/menu', component: Menu, name: '菜单管理' },
-        { path: '/news', component: News, name: '消息管理' }
+        { path: '/news', component: News, name: '消息管理' },
+        { path: '/role', component: Role, name: '角色管理' },
+        { path: '/log', component: Log, name: '日志管理' }
       ]
     },
     {

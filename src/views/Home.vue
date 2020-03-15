@@ -7,7 +7,8 @@
       <!-- 标题 -->
       <el-col :span="5" class="logo">
         <img :src="logo" />
-        <span>ERP管理系统</span>
+        <!-- <span>ERP管理系统</span> -->
+        <span>{{ one }}-{{ two }}</span>
       </el-col>
       <!-- 展开/折叠点击图标 -->
       <el-col :span="1" class="flow-icon" @click.native="collapse">
@@ -44,6 +45,19 @@
       <!-- 用户中心 -->
       <el-col :span="4" class="userinfo">
         <el-dropdown trigger="hover">
+          <span class="el-dropdown-link">{{ $i18n.locale }}</span>
+          <!-- 下拉菜单列表 -->
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="changelanguage('中文')"
+              >中文</el-dropdown-item
+            >
+            <el-dropdown-item @click.native="changelanguage('English')"
+              >English</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </el-dropdown>
+
+        <el-dropdown trigger="hover">
           <span class="el-dropdown-link">
             <img :src="userAvatar" />
             {{ username }}
@@ -75,23 +89,32 @@
           class="el-menu-vertical-demo"
           @open="handleopen"
           @close="handleclose"
-          @select="handleselect"
+          @select="handleselect"  
           :collapse="isCollapse"
         > -->
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span slot="title">系统管理</span>
+              <span slot="title">{{ $t("common.manage") }}</span>
             </template>
-            <el-menu-item index="1-1" @click="$router.push('user')"
-              >用户管理</el-menu-item
-            >
-            <el-menu-item index="1-2" @click="$router.push('menu')"
-              >菜单管理</el-menu-item
-            >
-            <el-menu-item index="1-3" @click="$router.push('news')"
-              >消息管理</el-menu-item
-            >
+            <el-menu-item index="1-1" @click="$router.push('user')">{{
+              $t("sys.userMng")
+            }}</el-menu-item>
+            <el-menu-item index="1-2" @click="$router.push('menu')">{{
+              $t("sys.menuMng")
+            }}</el-menu-item>
+            <el-menu-item index="1-3" @click="$router.push('news')">{{
+              $t("sys.newsMng")
+            }}</el-menu-item>
+            <el-menu-item index="1-4" @click="$router.push('log')">{{
+              $t("sys.logMng")
+            }}</el-menu-item>
+            <el-menu-item index="1-5" @click="$router.push('role')">{{
+              $t("sys.roleMng")
+            }}</el-menu-item>
+            <!-- <el-menu-item index="1-1" @click="$router.push('user')">用户管理</el-menu-item>
+            <el-menu-item index="1-2" @click="$router.push('menu')">菜单管理</el-menu-item>
+            <el-menu-item index="1-3" @click="$router.push('news')">消息管理</el-menu-item> -->
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -136,7 +159,9 @@
 </template>
 
 <script>
-import logo from "@/assets/img/logo.png";
+import logo from "@/assets/img/logo.png"
+import { mapState } from 'vuex'
+
 export default {
   name: "home",
   mounted() {
@@ -155,17 +180,29 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      one: 'one',
+      two: 'two'
+    }),
     routeMatched() {
       // console.log(this.$route);
       return this.$route.matched;
     }
   },
   methods: {
+    click() {
+      console.log(this.$store);
+    },
+    // 折叠导航栏
     collapse() {
       this.isCollapse = !this.isCollapse;
     },
+    // 切换语言
+    changelanguage(language) {
+      this.$i18n.locale = language;
+    },
+    // 退出登录
     logout() {
-      // 退出登录
       this.$confirm("确定要退出吗?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -221,9 +258,12 @@ export default {
     .userinfo {
       flex: 1;
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       .el-dropdown {
+        &:nth-of-type(1) {
+          width: 60px;
+        }
         span {
           display: flex;
           justify-content: center;
