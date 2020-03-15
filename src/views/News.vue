@@ -1,18 +1,18 @@
 <template>
-  <div class="user">
-    这个是用户介绍页面
+  <div class="news">
+    这个是消息管理页面
   </div>
 </template>
 
 <script>
 export default {
-  name: 'user',
+  name: "news",
   data() {
-    return  {
+    return {
 
     }
   }
-}
+};
 </script>
 
 <style lang="less">

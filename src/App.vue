@@ -76,6 +76,7 @@ export default {
 @import './assets/style/basis.less';
 #app {
   .boxSet();
+  min-width: 900px;
   text-align: center;
 }
 </style>
