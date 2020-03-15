@@ -5,16 +5,16 @@
     <!-- 顶部导航条 -->
     <el-col :span="24" class="header">
       <!-- 标题 -->
-      <el-col :span="4" class="logo" :class="{ collapse: !isCollapse }">
+      <el-col :span="5" class="logo">
         <img :src="logo" />
-        <span v-show="!isCollapse">ERP管理系统</span>
+        <span>ERP管理系统</span>
       </el-col>
       <!-- 展开/折叠点击图标 -->
       <el-col :span="1" class="flow-icon" @click.native="collapse">
         <i class="el-icon-menu"></i>
       </el-col>
       <!-- 顶部菜单项 -->
-      <el-col :span="15" class="menu">
+      <el-col :span="14" class="menu">
         <el-menu
           :default-active="activeIndex"
           class="el-menu-demo"
@@ -197,13 +197,10 @@ export default {
     }
     .logo {
       text-align: center;
-      width: 65px;
-      min-width: 0px;
       display: flex;
       justify-content: space-around;
       align-items: center;
       overflow: hidden;
-      border-right: 1px solid #fff;
       img {
         .boxSet(40px, 40px);
       }
@@ -212,10 +209,6 @@ export default {
         letter-spacing: 1px;
         font-weight: bold;
         color: @white;
-      }
-      &.collapse {
-        width: 201px;
-        min-width: 201px;
       }
     }
     .flow-icon {

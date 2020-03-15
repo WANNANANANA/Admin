@@ -9,6 +9,13 @@ import Error from '../views/Error'
 
 Vue.use(VueRouter)
 
+// 解决element-ui点击同一个路由报错：NavigationDuplicated
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
+
 let router = new VueRouter({
   mode: 'hash',
   base: process.env.BASE_URL,
